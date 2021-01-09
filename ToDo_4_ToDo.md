@@ -58,7 +58,7 @@
     [x] - task input
     [x] - dropdown of field
     [x] - date input
-[ ] - ul / div's?
+[x] - ul / div's?
 [x] - material icons
 
 # pool #
@@ -94,5 +94,6 @@
 
 # css #
 
-[ ] - Font = roboto condensed
+[x] - Font = roboto condensed
 [ ] - background color = rgb(171,2,2)
+[x] - grid classes

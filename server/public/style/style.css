@@ -1,20 +1,49 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+    grid-template-rows: 1fr 4fr;
+    grid-template-areas: 
+    "priority label date time delete"
+    "task task task task done";
+    width: 700px;
+    height: 150px;
+    border: 1px solid black;
+}
 
+.priority-grid-item {
+    grid-area: priority;
+    border: 1px solid black;
+}
 
+.label-grid-item {
+    grid-area: label;
+    border: 1px solid black;
+}
 
+.date-grid-item {
+    grid-area: date;
+    border: 1px solid black;
+}
 
+.time-grid-item {
+    grid-area: time;
+    border: 1px solid black;
+}
 
+.done-grid-item {
+    grid-area: done;
+    border: 1px solid black;
+}
 
+.delete-grid-item {
+    grid-area: delete;
+    border: 1px solid black;
+}
 
-
-
-
-
-
-
-
-
-
-
+.task-grid-item {
+    grid-area: task;
+    border: 1px solid black;
+}
 
 
 
