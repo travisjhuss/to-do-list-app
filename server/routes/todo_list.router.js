@@ -7,7 +7,7 @@ const pool = require('../modules/pool');
 // GET
 // get tasks from DB
 router.get('/', (req, res) => {
-    let query = 'SELECT * FROM "tasks" ORDER BY "date" ASC;';
+    const query = 'SELECT * FROM "tasks" ORDER BY "date" ASC;';
     pool.query(query).then(result => {
         res.send(result.rows);
 
@@ -19,8 +19,8 @@ router.get('/', (req, res) => {
 
 // POST
 router.post('/', (req, res) => {
-    let newTask = req.body;
-    let query = `
+    const newTask = req.body;
+    const query = `
                 INSERT INTO "tasks" ("task", "priority", "label", "date", "time")
                 VALUES ($1, $2, $3, $4, $5);
                 `;
@@ -39,7 +39,22 @@ router.post('/', (req, res) => {
 
 
 // DELETE
-
+router.delete('/:id', (req, res) => {
+    let id = req.params.id; // id of the thing to delete
+    console.log('Delete route with id of', id);
+  
+    // TODO - REPLACE BELOW WITH YOUR CODE
+    const query = `DELETE FROM "tasks" WHERE "id" = $1;`;
+  
+    pool.query(query, [id])
+      .then((result) => {
+        res.sendStatus(204);
+      }).catch((error) => {
+        console.log('error');
+        res.sendStatus(500);
+      })
+  
+  });
 
 
 // export router

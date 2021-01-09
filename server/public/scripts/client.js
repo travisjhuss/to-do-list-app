@@ -10,6 +10,7 @@ function onReady() {
 
 function clickListeners() {
     $('#submitBtn').on('click', addTask);
+    $('#taskList').on('click', '.deleteBtn', deleteTask);
 } // end clickListeners
 
 function getTasks() {
@@ -49,9 +50,25 @@ function renderTasks(tasks) {
 
         // check completed status
         if (task.completed === false) {
-            $tr.append(`<div class="done-grid-item check-done"><input type="checkbox" value="1"></div>`);
+            $tr.append(`
+                        <div class="done-grid-item checkbox">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            <p>Done</p>
+                        </div>
+                        `);
         } else if (task.completed === true) {
-            $tr.append(`<div class="done-grid-item check-done"><input type="checkbox" value="2" checked></div>`);
+            $tr.append(`
+                        <div class="done-grid-item checkbox">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                            <p>Done</p>
+                        </div>
+                        `);
         } else {
             console.log('ERROR');
         };
@@ -161,3 +178,21 @@ function clearFields() {
     $('#dateInput').val('');
     $('#timeInput').val('');
 } // end clearFields
+
+function deleteTask() {
+    console.log('clicked delete');
+    const id = $(this).parent().parent().data('id');
+    console.log(id);
+
+    $.ajax({
+        type: 'DELETE',
+        url: `/tasks/${id}`
+
+    }).then(function (response) {
+        getTasks();
+    }).catch(function (error) {
+        alert('error in delete');
+    }); // end ajax
+
+
+} // end deleteTask

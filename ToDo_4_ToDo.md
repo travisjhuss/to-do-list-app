@@ -75,9 +75,9 @@
 [x] - require pool
 [x] - declare router
 [x] - GET
-[ ] - POST
+[x] - POST
 [ ] - PUT
-[ ] - DELETE
+[x] - DELETE
 [x] - export router
 
 # client.js #
@@ -85,12 +85,12 @@
 [x] - onReady
 [x] - function displayList
     [x] - ajax get
-[ ] - function addTask
-    [ ] - ajax post
+[x] - function addTask
+    [x] - ajax post
 [ ] - function editTask
     [ ] - ajax put
-[ ] - function deleteTask
-    [ ] - ajax delete
+[x] - function deleteTask
+    [x] - ajax delete
 
 # css #
 
