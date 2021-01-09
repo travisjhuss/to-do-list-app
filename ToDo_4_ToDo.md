@@ -37,14 +37,14 @@
 # server.js #
 
 [ ] - require 
-    [ ] - express
-    [ ] - body parser
+    [x] - express
+    [x] - body parser
     [ ] - router
-[ ] - declare app
-[ ] - app.use bodyParser
+[x] - declare app
+[x] - app.use bodyParser
 [ ] - app.use router
-[ ] - declare port
-[ ] - app.listen
+[x] - declare port
+[x] - app.listen
 
 # index.html #
 
