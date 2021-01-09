@@ -31,7 +31,7 @@
 
 [ ] - data schema
 [ ] - create table
-    [ ] - columns ("id", "task", "date_assigned", "complete_status", "field")
+    [ ] - columns ("id", "task", "priority", "label", "date", "time", "complete_status")
 [ ] - populate with dummy data
 
 # server.js #
@@ -48,18 +48,18 @@
 
 # index.html #
 
-[ ] - boilerplate
-[ ] - jquery
-[ ] - client
-[ ] - bootstrap
-[ ] - style
-[ ] - header
-[ ] - form
-    [ ] - task input
-    [ ] - dropdown of field
-    [ ] - date input
-[ ] - ul
-[ ] - material icons
+[x] - boilerplate
+[x] - jquery
+[x] - client
+[x] - bootstrap
+[x] - style
+[x] - header
+[x] - form
+    [x] - task input
+    [x] - dropdown of field
+    [x] - date input
+[ ] - ul / div's?
+[x] - material icons
 
 # pool #
 
