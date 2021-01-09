@@ -33,14 +33,19 @@ function renderTasks(tasks) {
         let $tr = $(`<div class="grid-container" data-id=${task.id}>`);
         $tr.append(`<div class="task-grid-item">${task.task}</div>`);
         $tr.append(`<div class="label-grid-item">${task.label}</div>`);
-        $tr.append(`<div class="date-grid-item">${task.date}</div>`);
-        $tr.append(`<div class="delete-grid-item"><button class="mdc-icon-button material-icons deleteBtn">delete</button></div>`);
+        // add buttons to task container
+        $tr.append(`<div class="delete-grid-item">
+                        <button class="mdc-icon-button material-icons editBtn">edit</button>
+                        <button class="mdc-icon-button material-icons deleteBtn">delete</button>
+                    </div>`);
 
         // convert time
         let time = convertTime(task.time);
         $tr.append(`<div class="time-grid-item">${time}</div>`);
 
         // convert date
+        let date = convertDate(task.date);
+        $tr.append(`<div class="date-grid-item">${date}</div>`);
 
         // check completed status
         if (task.completed === false) {
@@ -53,16 +58,16 @@ function renderTasks(tasks) {
 
         // check priority
         if (task.priority === 1) {
-            $tr.append(`<div class="priority-grid-item">
+            $tr.append(`<div class="priority-grid-item low-priority">
                             <i class="mdc-icon-button material-icons">star</i>
                         </div>`);
         } else if (task.priority === 2) {
-            $tr.append(`<div class="priority-grid-item">
+            $tr.append(`<div class="priority-grid-item med-priority">
                             <i class="mdc-icon-button material-icons">star</i>
                             <i class="mdc-icon-button material-icons">star</i>
                         </div>`);
         } else if (task.priority === 3) {
-            $tr.append(`<div class="priority-grid-item">
+            $tr.append(`<div class="priority-grid-item high-priority">
                             <i class="mdc-icon-button material-icons">star</i>
                             <i class="mdc-icon-button material-icons">star</i>
                             <i class="mdc-icon-button material-icons">star</i>
@@ -90,9 +95,9 @@ function convertDate(input) {
     if (input === null) {
         return '';
     } else {
-        return moment(input, 'YYYY MM DD').format("MMM Do YY");
+        return moment(input, 'YYYY MM DD').format("MMM Do 'YY");
     }
-} // end convertTime
+} // end convertDate
 
 
 function addTask() {
