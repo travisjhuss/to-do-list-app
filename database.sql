@@ -16,7 +16,7 @@ CREATE TABLE "tasks" (
 
     "id" SERIAL PRIMARY key,
     "task" VARCHAR(200) NOT NULL,
-    "priority" VARCHAR(10) DEFAULT 'low',
+    "priority" INT DEFAULT '1',
     "label" VARCHAR(20) DEFAULT NULL,
     "date" VARCHAR(12) DEFAULT NULL,
     "time" VARCHAR(10) DEFAULT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE "tasks" (
 
 -- dummy data
 INSERT INTO "tasks" ("task", "priority", "label", "date", "time")
-VALUES ('Take out the trash', 'low', 'home', default, default), 
-('Prepare presentation', 'high', 'work', '2021-01-16', '10:30'),
-('Buy cake for Katelyn''s birthday', 'medium', 'home', '2021-01-12', '15:00'),
-('Complete weekend assignment', 'high', 'school', '2021-01-10', '17:00');
+VALUES ('Take out the trash', '1', 'home', default, default), 
+('Prepare presentation', '3', 'work', '2021-01-16', '10:30'),
+('Buy cake for Katelyn''s birthday', '2', 'home', '2021-01-12', '15:00'),
+('Complete weekend assignment', '3', 'school', '2021-01-10', '17:00');
