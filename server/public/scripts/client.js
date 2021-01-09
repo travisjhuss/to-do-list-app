@@ -200,34 +200,28 @@ function deleteTask() {
 
 function markDone() {
     console.log('checked done');
+    const id = $(this).parent().parent().parent().data('id');
+    console.log(id);
+    const dataToSend = {};
     
-        // if (this.checked)
-        
-        //     alert('checkbox is checked');
+    if (this.checked) {
+        console.log('checked working');
+        dataToSend.completed = 'true';
+    } else {
+        dataToSend.completed = 'false';
+    }
 
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks/${id}`,
+        data: dataToSend
+    
+      }).then(function (response) {
+        console.log('updated');
+        getTasks();
+    
+      }).catch(function (error) {
+        alert('error updating');
+      }) // end ajax
     
 } // end markDone
-
-
-function markAsRead() {
-    console.log('clicked mark as read');
-    const id = $(this).closest('tr').data('id');
-    console.log(id);
-    const dataToSend = {
-      readStatus: 'read'
-    }
-  
-    $.ajax({
-      type: 'PUT',
-      url: `/books/${id}`,
-      data: dataToSend
-  
-    }).then(function (response) {
-      console.log('updated');
-      refreshBooks();
-  
-    }).catch(function (error) {
-      alert('error updating');
-    }) // end ajax
-  
-  } // end markAsRead
