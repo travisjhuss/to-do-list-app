@@ -7,6 +7,12 @@
     margin-left: 10px;
 }
 
+.taskInput {
+    width: 600px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 2fr 1fr;

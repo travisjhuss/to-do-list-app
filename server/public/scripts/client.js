@@ -102,6 +102,7 @@ function convertDate(input) {
 
 function addTask() {
     console.log('clicked submit');
+
     const newTask = {
         task: $('#taskInput').val(),
         priority: $('#priorityInput').val(),
@@ -109,8 +110,54 @@ function addTask() {
         date: $('#dateInput').val(),
         time: $('#timeInput').val()
     }
-
     console.log(newTask);
+
+    // switching priority to an integer
+    switch (newTask.priority) {
+        case 'low':
+            newTask.priority = 1;
+            break;
+        case 'medium':
+            newTask.priority = 2;
+            break;
+        case 'high':
+            newTask.priority = 3;
+            break;
+        default:
+            console.log('error');
+            break;
+    }; // end switch
+
+    // check for no date
+    if (newTask.date === '') {
+        newTask.date = undefined;
+    };
+
+    // check for no time
+    if (newTask.time === '') {
+        newTask.time = undefined;
+    };
+
+    $.ajax({
+        type: 'POST',
+        url: '/tasks',
+        data: newTask,
+    }).then(function (response) {
+        console.log('Response from server.', response);
+        clearFields();
+        getTasks();
+    }).catch(function (error) {
+        console.log('Error in POST', error)
+        alert('Unable to add task at this time.');
+    });
 
 
 } // addTask
+
+function clearFields() {
+    $('#taskInput').val('');
+    $('#priorityInput').val('');
+    $('#labelInput').val('');
+    $('#dateInput').val('');
+    $('#timeInput').val('');
+} // end clearFields

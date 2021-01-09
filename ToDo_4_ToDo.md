@@ -36,13 +36,13 @@
 
 # server.js #
 
-[ ] - require 
+[x] - require 
     [x] - express
     [x] - body parser
-    [ ] - router
+    [x] - router
 [x] - declare app
 [x] - app.use bodyParser
-[ ] - app.use router
+[x] - app.use router
 [x] - declare port
 [x] - app.listen
 
@@ -63,28 +63,28 @@
 
 # pool #
 
-[ ] - pg require 
-[ ] - declare DB in varaible
-[ ] - pool.on connect
-[ ] - pool.on error
-[ ] - export pool
+[x] - pg require 
+[x] - declare DB in varaible
+[x] - pool.on connect
+[x] - pool.on error
+[x] - export pool
 
 # router #
 
-[ ] - require express
-[ ] - require pool
-[ ] - declare router
-[ ] - GET
+[x] - require express
+[x] - require pool
+[x] - declare router
+[x] - GET
 [ ] - POST
 [ ] - PUT
 [ ] - DELETE
-[ ] - export router
+[x] - export router
 
 # client.js #
 
-[ ] - onReady
-[ ] - function displayList
-    [ ] - ajax get
+[x] - onReady
+[x] - function displayList
+    [x] - ajax get
 [ ] - function addTask
     [ ] - ajax post
 [ ] - function editTask
