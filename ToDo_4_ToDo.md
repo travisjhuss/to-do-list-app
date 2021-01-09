@@ -29,7 +29,7 @@
 
 # Database #
 
-[ ] - data schema
+[x] - data schema
 [ ] - create table
     [ ] - columns ("id", "task", "priority", "label", "date", "time", "complete_status")
 [ ] - populate with dummy data

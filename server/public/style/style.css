@@ -1,3 +1,12 @@
+.header {
+    margin-bottom: 20px;
+}
+
+.form {
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
@@ -8,6 +17,8 @@
     width: 700px;
     height: 150px;
     border: 1px solid black;
+    margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 .priority-grid-item {
@@ -44,18 +55,6 @@
     grid-area: task;
     border: 1px solid black;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
