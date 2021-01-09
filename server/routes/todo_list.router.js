@@ -36,7 +36,38 @@ router.post('/', (req, res) => {
 }); // end POST
 
 // PUT
-
+router.put('/:id', (req, res) => {
+    const task = req.body;
+    const id = req.params.id;
+    console.log(task);
+    
+    console.log(`Updating task ${id} with `, task.completed);
+  
+    // TODO - REPLACE BELOW WITH YOUR CODE
+    let queryText;
+  
+    if (task.complete === true) {
+      queryText = `
+              UPDATE "tasks"
+              SET "completed" = true
+              WHERE "id" = $1;`
+  
+    } else {
+      res.sendStatus(400)
+      // do nothing else
+      return;
+    }
+  
+    pool.query(queryText, [id])
+      .then((result) => {
+        res.sendStatus(200);
+  
+      }).catch((error) => {
+        console.log(error);
+        res.sendStatus(500);
+      })
+  
+  });
 
 // DELETE
 router.delete('/:id', (req, res) => {

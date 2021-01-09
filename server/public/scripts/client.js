@@ -3,14 +3,15 @@ $(document).ready(onReady);
 
 function onReady() {
     console.log('jQuery loaded');
-    clickListeners();
+    addListeners();
     getTasks();
 
 } // end onReady
 
-function clickListeners() {
+function addListeners() {
     $('#submitBtn').on('click', addTask);
     $('#taskList').on('click', '.deleteBtn', deleteTask);
+    $('#taskList').on('change', '.checkbox', markDone)
 } // end clickListeners
 
 function getTasks() {
@@ -51,9 +52,9 @@ function renderTasks(tasks) {
         // check completed status
         if (task.completed === false) {
             $tr.append(`
-                        <div class="done-grid-item checkbox">
+                        <div class="done-grid-item">
                             <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox" class="checkbox">
                                 <span class="slider round"></span>
                             </label>
                             <p>Done</p>
@@ -61,9 +62,9 @@ function renderTasks(tasks) {
                         `);
         } else if (task.completed === true) {
             $tr.append(`
-                        <div class="done-grid-item checkbox">
+                        <div class="done-grid-item">
                             <label class="switch">
-                                <input type="checkbox" checked>
+                                <input type="checkbox" class="checkbox" checked>
                                 <span class="slider round"></span>
                             </label>
                             <p>Done</p>
@@ -196,3 +197,37 @@ function deleteTask() {
 
 
 } // end deleteTask
+
+function markDone() {
+    console.log('checked done');
+    
+        // if (this.checked)
+        
+        //     alert('checkbox is checked');
+
+    
+} // end markDone
+
+
+function markAsRead() {
+    console.log('clicked mark as read');
+    const id = $(this).closest('tr').data('id');
+    console.log(id);
+    const dataToSend = {
+      readStatus: 'read'
+    }
+  
+    $.ajax({
+      type: 'PUT',
+      url: `/books/${id}`,
+      data: dataToSend
+  
+    }).then(function (response) {
+      console.log('updated');
+      refreshBooks();
+  
+    }).catch(function (error) {
+      alert('error updating');
+    }) // end ajax
+  
+  } // end markAsRead
