@@ -1,9 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const taskRouter = require('./routes/todo_list.router')
 
 const app = express();
-
+// use bodyParser
 app.use(bodyParser.urlencoded({extended: true}));
+// use imported routes 
+app.use('/tasks', taskRouter);
 
 // server public static files
 app.use(express.static('server/public'));
@@ -16,12 +19,4 @@ app.listen(PORT, () => {
 });
 
 
-
-
-
-
-// const booksRouter = require('./routes/book.router.js');
-
-
-// app.use('/books', booksRouter);
 

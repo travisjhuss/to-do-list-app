@@ -30,9 +30,9 @@
 # Database #
 
 [x] - data schema
-[ ] - create table
-    [ ] - columns ("id", "task", "priority", "label", "date", "time", "complete_status")
-[ ] - populate with dummy data
+[x] - create table
+    [x] - columns ("id", "task", "priority", "label", "date", "time", "completed")
+[x] - populate with dummy data
 
 # server.js #
 
