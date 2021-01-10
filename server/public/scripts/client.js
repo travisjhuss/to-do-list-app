@@ -37,8 +37,8 @@ function renderTasks(tasks) {
         $tr.append(`<div class="label-grid-item">${task.label}</div>`);
         // add buttons to task container
         $tr.append(`<div class="delete-grid-item">
-                        <button class="mdc-icon-button material-icons editBtn">edit</button>
                         <button class="mdc-icon-button material-icons deleteBtn">delete</button>
+                        <button class="mdc-icon-button material-icons editBtn">edit</button>
                     </div>`);
 
         // convert time
@@ -77,15 +77,18 @@ function renderTasks(tasks) {
         // check priority
         if (task.priority === 1) {
             $tr.append(`<div class="priority-grid-item low-priority">
+                            <p>Priority</p>
                             <i class="mdc-icon-button material-icons">star</i>
                         </div>`);
         } else if (task.priority === 2) {
             $tr.append(`<div class="priority-grid-item med-priority">
+                            <p>Priority</p>
                             <i class="mdc-icon-button material-icons">star</i>
                             <i class="mdc-icon-button material-icons">star</i>
                         </div>`);
         } else if (task.priority === 3) {
             $tr.append(`<div class="priority-grid-item high-priority">
+                            <p>Priority</p>
                             <i class="mdc-icon-button material-icons">star</i>
                             <i class="mdc-icon-button material-icons">star</i>
                             <i class="mdc-icon-button material-icons">star</i>
