@@ -1,3 +1,4 @@
+
 $(document).ready(onReady);
 
 
@@ -12,7 +13,7 @@ function addListeners() {
     $('#submitBtn').on('click', addTask);
     $('#taskList').on('click', '.deleteBtn', deleteTask);
     $('#taskList').on('change', '.checkbox', markDone)
-    $('#taskList').on('change', '#displayInput', orderTasks)
+    $('#displayInput').on('change', orderTasks)
 } // end clickListeners
 
 function getTasks() {
@@ -31,16 +32,6 @@ function getTasks() {
 function renderTasks(tasks) {
     // empty container on DOM
     $('#taskList').empty();
-    // create order by drop down
-    $('#taskList').append(`
-        <div class="displayBy">
-            <label for="displayInput">Order by:</label>
-            <select id="displayInput">
-                <option value="date">Date</option>
-                <option value="label">Label</option>
-                <option value="priority">Priority</option>
-        </div>      
-    `);
     // loop over array of objects
     for (let task of tasks) {
         let $tr = $(`<div class="grid-container" data-id=${task.id}>`);
@@ -223,18 +214,29 @@ function clearFields() {
 function deleteTask() {
     console.log('clicked delete');
     const id = $(this).parent().parent().data('id');
-    console.log(id);
-
-    $.ajax({
-        type: 'DELETE',
-        url: `/tasks/${id}`
-
-    }).then(function (response) {
-        getTasks();
-    }).catch(function (error) {
-        alert('error in delete');
-    }); // end ajax
-
+    swal({
+        title: "Delete",
+        text: "Are you sure?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            swal('Task Deleted', {
+                icon: "success",
+            });
+            $.ajax({
+                type: 'DELETE',
+                url: `/tasks/${id}`
+            }).then(function (response) {
+                getTasks();
+            }).catch(function (error) {
+                alert('error in delete');
+            }); // end ajax
+        } else {
+            swal("Task kept");
+        }
+    });
 
 } // end deleteTask
 
@@ -243,7 +245,7 @@ function markDone() {
     const id = $(this).parent().parent().parent().data('id');
     console.log(id);
     const dataToSend = {};
-    
+
     if (this.checked) {
         console.log('checked working');
         dataToSend.completed = 'true';
@@ -255,39 +257,39 @@ function markDone() {
         type: 'PUT',
         url: `/tasks/${id}`,
         data: dataToSend
-    
-      }).then(function (response) {
+
+    }).then(function (response) {
         console.log('updated');
         getTasks();
-    
-      }).catch(function (error) {
+
+    }).catch(function (error) {
         alert('error updating');
-      }) // end ajax
-    
+    }) // end ajax
+
 } // end markDone
 
 function orderTasks() {
     console.log('changed order by');
     const orderByData = $('#displayInput').val();
     console.log(orderByData);
-    
+
     const dataToSend = {
         orderBy: orderByData
     };
 
     console.log(dataToSend);
-    
+
 
     $.ajax({
         type: 'PUT',
         url: `/tasks`,
         data: dataToSend
-    
-      }).then(function (response) {
+
+    }).then(function (response) {
         console.log(response);
         renderTasks(response);
-      }).catch(function (error) {
+    }).catch(function (error) {
         alert('error updating');
-      }) // end ajax
+    }) // end ajax
 
 } // end orderTasks

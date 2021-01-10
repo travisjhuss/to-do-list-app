@@ -82,13 +82,13 @@ router.put('/', (req, res) => {
     let queryText;
 
     switch (order) {
-        case 'label':
+        case 'Label':
             queryText = `SELECT * FROM "tasks" ORDER BY "label" ASC;`;
             break
-        case 'date':
+        case 'Date':
             queryText = `SELECT * FROM "tasks" ORDER BY "date" ASC;`;
             break
-        case 'priority':
+        case 'Priority':
             queryText = `SELECT * FROM "tasks" ORDER BY "priority" DESC;`;
             break
         default:

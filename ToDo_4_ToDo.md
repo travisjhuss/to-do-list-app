@@ -102,6 +102,6 @@
 [ ] - edit tasks in same container
     [ ] - put route
     [ ] - ajax on client
-[ ] - display by dropdown
-[ ] - sweet alert when deleting
+[x] - display by dropdown
+[x] - sweet alert when deleting
 [ ] - style inputs

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="vendors/jquery.js"></script>
     <script src="vendors/moment.min.js"></script>
+    <script src="vendors/sweetalert.min.js"></script>
     <script src="scripts/client.js"></script>
     <link rel="stylesheet" href="vendors/bootstrap.css" />
     <link rel="stylesheet" href="style/style.css" />
@@ -43,6 +44,14 @@
         <input type="date" id="dateInput" name="date">
         <label for="time">Time:</label>
         <input type="time" id="timeInput" name="time">
+    </div>
+    <div class="displayBy">
+        <label for="">Order by:</label>
+        <select id="displayInput">
+            <option>Date</option>
+            <option>Label</option>
+            <option>Priority</option>
+        </select>
     </div>
     <div id="taskList">
         
