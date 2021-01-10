@@ -26,7 +26,7 @@ CREATE TABLE "tasks" (
 
 -- dummy data
 INSERT INTO "tasks" ("task", "priority", "label", "date", "time")
-VALUES ('Take out the trash', '1', 'home', default, default), 
-('Prepare presentation', '3', 'work', '2021-01-16', '10:30'),
-('Buy cake for Katelyn''s birthday', '2', 'home', '2021-01-12', '15:00'),
-('Complete weekend assignment', '3', 'school', '2021-01-10', '17:00');
+VALUES ('Take out the trash', '1', 'Home', default, default), 
+('Prepare presentation', '3', 'Work', '2021-01-16', '10:30'),
+('Buy cake for Katelyn''s birthday', '2', 'Home', '2021-01-12', '15:00'),
+('Complete weekend assignment', '3', 'School', '2021-01-10', '17:00');

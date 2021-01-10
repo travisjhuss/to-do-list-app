@@ -95,7 +95,7 @@
 # css #
 
 [x] - Font = roboto condensed
-[ ] - background color = rgb(171,2,2)
+[x] - background color = rgb(171,2,2)
 [x] - grid classes
 
 # stretch #
@@ -103,3 +103,5 @@
     [ ] - put route
     [ ] - ajax on client
 [ ] - display by dropdown
+[ ] - sweet alert when deleting
+[ ] - style inputs

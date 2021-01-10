@@ -12,6 +12,7 @@ function addListeners() {
     $('#submitBtn').on('click', addTask);
     $('#taskList').on('click', '.deleteBtn', deleteTask);
     $('#taskList').on('change', '.checkbox', markDone)
+    $('#taskList').on('change', '#displayInput', orderTasks)
 } // end clickListeners
 
 function getTasks() {
@@ -30,6 +31,16 @@ function getTasks() {
 function renderTasks(tasks) {
     // empty container on DOM
     $('#taskList').empty();
+    // create order by drop down
+    $('#taskList').append(`
+        <div class="displayBy">
+            <label for="displayInput">Order by:</label>
+            <select id="displayInput">
+                <option value="date">Date</option>
+                <option value="label">Label</option>
+                <option value="priority">Priority</option>
+        </div>      
+    `);
     // loop over array of objects
     for (let task of tasks) {
         let $tr = $(`<div class="grid-container" data-id=${task.id}>`);
@@ -254,3 +265,29 @@ function markDone() {
       }) // end ajax
     
 } // end markDone
+
+function orderTasks() {
+    console.log('changed order by');
+    const orderByData = $('#displayInput').val();
+    console.log(orderByData);
+    
+    const dataToSend = {
+        orderBy: orderByData
+    };
+
+    console.log(dataToSend);
+    
+
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks`,
+        data: dataToSend
+    
+      }).then(function (response) {
+        console.log(response);
+        renderTasks(response);
+      }).catch(function (error) {
+        alert('error updating');
+      }) // end ajax
+
+} // end orderTasks

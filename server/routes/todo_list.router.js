@@ -35,62 +35,94 @@ router.post('/', (req, res) => {
 
 }); // end POST
 
-// PUT
+// PUT for complete status
 router.put('/:id', (req, res) => {
     const task = req.body;
     const id = req.params.id;
     console.log(task);
-    
+
     console.log(`Updating task ${id} with`, task.completed);
-  
+
     // TODO - REPLACE BELOW WITH YOUR CODE
     let queryText;
-  
+
     if (task.completed === 'true') {
-      queryText = `
+        queryText = `
               UPDATE "tasks"
               SET "completed" = true
               WHERE "id" = $1;`
-  
-    } else if (task.completed === 'false'){
+
+    } else if (task.completed === 'false') {
         queryText = `
               UPDATE "tasks"
               SET "completed" = false
               WHERE "id" = $1;`
     } else {
-      res.sendStatus(400)
-      // do nothing else
-      return;
+        res.sendStatus(400)
+        // do nothing else
+        return;
     }
-  
+
     pool.query(queryText, [id])
-      .then((result) => {
-        res.sendStatus(200);
-  
-      }).catch((error) => {
-        console.log(error);
+        .then((result) => {
+            res.sendStatus(200);
+
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        })
+
+});
+
+// PUT for display by
+router.put('/', (req, res) => {
+    const order = req.body.orderBy;
+    console.log(order);
+
+    let queryText;
+
+    switch (order) {
+        case 'label':
+            queryText = `SELECT * FROM "tasks" ORDER BY "label" ASC;`;
+            break
+        case 'date':
+            queryText = `SELECT * FROM "tasks" ORDER BY "date" ASC;`;
+            break
+        case 'priority':
+            queryText = `SELECT * FROM "tasks" ORDER BY "priority" DESC;`;
+            break
+        default:
+            res.sendStatus(400)
+            return;
+    }
+
+    pool.query(queryText).then(result => {
+        res.send(result.rows);
+
+    }).catch(error => {
+        console.log('error getting tasks', error);
         res.sendStatus(500);
-      })
-  
-  });
+    });
+
+});
 
 // DELETE
 router.delete('/:id', (req, res) => {
     let id = req.params.id; // id of the thing to delete
     console.log('Delete route with id of', id);
-  
+
     // TODO - REPLACE BELOW WITH YOUR CODE
     const query = `DELETE FROM "tasks" WHERE "id" = $1;`;
-  
+
     pool.query(query, [id])
-      .then((result) => {
-        res.sendStatus(204);
-      }).catch((error) => {
-        console.log('error');
-        res.sendStatus(500);
-      })
-  
-  });
+        .then((result) => {
+            res.sendStatus(204);
+        }).catch((error) => {
+            console.log('error');
+            res.sendStatus(500);
+        })
+
+});
 
 
 // export router
