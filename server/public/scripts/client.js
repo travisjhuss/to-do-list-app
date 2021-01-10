@@ -33,6 +33,32 @@ function renderTasks(tasks) {
     // loop over array of objects
     for (let task of tasks) {
         let $tr = $(`<div class="grid-container" data-id=${task.id}>`);
+        // check completed status
+        if (task.completed === false) {
+            $tr.append(`
+                        <div class="done-grid-item">
+                            <label class="switch">
+                                <input type="checkbox" class="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                            <p>Done</p>
+                        </div>
+                        `);
+        } else if (task.completed === true) {
+            $tr = $(`<div class="grid-container completed" data-id=${task.id}>`);
+            $tr.append(`
+                        <div class="done-grid-item">
+                            <label class="switch">
+                                <input type="checkbox" class="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                            <p>Done</p>
+                        </div>
+                        `);
+        } else {
+            console.log('ERROR');
+        };
+
         $tr.append(`<div class="task-grid-item">${task.task}</div>`);
         $tr.append(`<div class="label-grid-item">${task.label}</div>`);
         // add buttons to task container
