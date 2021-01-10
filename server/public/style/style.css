@@ -1,5 +1,51 @@
+body {
+    background-color: rgb(171,2,2);
+}
 .header {
+    display: grid;
+    grid-template-areas: 
+        "title title img ."
+        "description . img .";
+    grid-template-rows: auto;
     margin-bottom: 20px;
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 700;
+    background-color: rgb(171,2,2);
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.header h1 {
+    grid-area: title;
+    font-family: 'Roboto Condensed';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    position: relative;
+    color: white;
+    padding-left: 5%;
+    bottom: -12px;
+}
+
+.header img {
+    grid-area: img;
+    height: 100px;
+    width: 100px;
+    justify-self: end;
+}
+
+.header p {
+    grid-area: description;
+    justify-items: end;
+    font-family: 'Roboto Condensed';
+    font-style: italic;
+    font-weight: 300;
+    color: white;
+    justify-self: center;
+    padding-left: 40px;
 }
 
 .form {
@@ -19,7 +65,7 @@
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 30px;
+  height: 34px;
   margin-top: 20px;
 }
 
@@ -71,11 +117,11 @@ input:checked + .slider:before {
 
 /* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+  border-radius: 5%;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+  border-radius: 15%;
 }
 /* end slider stuff */
 
@@ -83,7 +129,7 @@ input:checked + .slider:before {
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
-    grid-template-rows: 1fr 4fr;
+    grid-template-rows: 1fr 2fr;
     grid-template-areas: 
     "priority label date time delete"
     "task task task task done";

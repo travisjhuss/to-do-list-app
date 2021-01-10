@@ -76,7 +76,7 @@
 [x] - declare router
 [x] - GET
 [x] - POST
-[ ] - PUT
+[x] - PUT
 [x] - DELETE
 [x] - export router
 
@@ -87,8 +87,8 @@
     [x] - ajax get
 [x] - function addTask
     [x] - ajax post
-[ ] - function editTask
-    [ ] - ajax put
+[x] - function editTask
+    [x] - ajax put
 [x] - function deleteTask
     [x] - ajax delete
 
@@ -97,3 +97,9 @@
 [x] - Font = roboto condensed
 [ ] - background color = rgb(171,2,2)
 [x] - grid classes
+
+# stretch #
+[ ] - edit tasks in same container
+    [ ] - put route
+    [ ] - ajax on client
+[ ] - display by dropdown
