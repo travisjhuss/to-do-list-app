@@ -201,6 +201,7 @@ function deleteTask() {
                 type: 'DELETE',
                 url: `/tasks/${id}`
             }).then(function (response) {
+                console.log(response);
                 getTasks();
             }).catch(function (error) {
                 alert('error in delete');
@@ -246,6 +247,9 @@ function orderTasks() {
     const dataToSend = {
         orderBy: orderByData
     };
+
+    console.log(dataToSend);
+
 
     $.ajax({
         type: 'PUT',
