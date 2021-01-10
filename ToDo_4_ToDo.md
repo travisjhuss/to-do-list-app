@@ -1,6 +1,5 @@
 ## Much To Do about To Do - the app ##
 
-
 # Set-Up #
 
 [x] - .gitignore

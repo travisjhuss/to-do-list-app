@@ -43,17 +43,16 @@ router.put('/:id', (req, res) => {
 
     console.log(`Updating task ${id} with`, task.completed);
 
-    // TODO - REPLACE BELOW WITH YOUR CODE
-    let queryText;
+    let query;
 
     if (task.completed === 'true') {
-        queryText = `
+        query = `
               UPDATE "tasks"
               SET "completed" = true
               WHERE "id" = $1;`
 
     } else if (task.completed === 'false') {
-        queryText = `
+        query = `
               UPDATE "tasks"
               SET "completed" = false
               WHERE "id" = $1;`
@@ -63,7 +62,7 @@ router.put('/:id', (req, res) => {
         return;
     }
 
-    pool.query(queryText, [id])
+    pool.query(query, [id])
         .then((result) => {
             res.sendStatus(200);
 
@@ -79,24 +78,24 @@ router.put('/', (req, res) => {
     const order = req.body.orderBy;
     console.log(order);
 
-    let queryText;
+    let query;
 
     switch (order) {
         case 'Label':
-            queryText = `SELECT * FROM "tasks" ORDER BY "label" ASC;`;
+            query = `SELECT * FROM "tasks" ORDER BY "label" ASC;`;
             break
         case 'Date':
-            queryText = `SELECT * FROM "tasks" ORDER BY "date" ASC;`;
+            query = `SELECT * FROM "tasks" ORDER BY "date" ASC;`;
             break
         case 'Priority':
-            queryText = `SELECT * FROM "tasks" ORDER BY "priority" DESC;`;
+            query = `SELECT * FROM "tasks" ORDER BY "priority" DESC;`;
             break
         default:
             res.sendStatus(400)
             return;
     }
 
-    pool.query(queryText).then(result => {
+    pool.query(query).then(result => {
         res.send(result.rows);
 
     }).catch(error => {
@@ -111,7 +110,6 @@ router.delete('/:id', (req, res) => {
     let id = req.params.id; // id of the thing to delete
     console.log('Delete route with id of', id);
 
-    // TODO - REPLACE BELOW WITH YOUR CODE
     const query = `DELETE FROM "tasks" WHERE "id" = $1;`;
 
     pool.query(query, [id])

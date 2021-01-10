@@ -1,12 +1,9 @@
-
 $(document).ready(onReady);
-
 
 function onReady() {
     console.log('jQuery loaded');
     addListeners();
     getTasks();
-
 } // end onReady
 
 function addListeners() {
@@ -35,6 +32,7 @@ function renderTasks(tasks) {
     $('#taskList').empty();
     // loop over array of objects
     for (let task of tasks) {
+        // put task ID in data attr
         let $tr = $(`<div class="grid-container" data-id=${task.id}>`);
         // check completed status
         if (task.completed === false) {
@@ -48,6 +46,7 @@ function renderTasks(tasks) {
                         </div>
                         `);
         } else if (task.completed === true) {
+            // if task done, add completed class
             $tr = $(`<div class="grid-container completed" data-id=${task.id}>`);
             $tr.append(`
                         <div class="done-grid-item">
@@ -61,47 +60,22 @@ function renderTasks(tasks) {
         } else {
             console.log('ERROR');
         };
-
+        // adding task and label
         $tr.append(`<div class="task-grid-item">${task.task}</div>`);
         $tr.append(`<div class="label-grid-item">${task.label}</div>`);
-        // add buttons to task container
+        // add edit and delete buttons to task container
         $tr.append(`<div class="delete-grid-item">
                         <button class="mdc-icon-button material-icons deleteBtn">delete</button>
                         <button class="mdc-icon-button material-icons editBtn">edit</button>
                     </div>`);
 
-        // convert time
+        // convert time for readability
         let time = convertTime(task.time);
         $tr.append(`<div class="time-grid-item">${time}</div>`);
 
-        // convert date
+        // convert date for readability
         let date = convertDate(task.date);
         $tr.append(`<div class="date-grid-item">${date}</div>`);
-
-        // check completed status
-        if (task.completed === false) {
-            $tr.append(`
-                        <div class="done-grid-item">
-                            <label class="switch">
-                                <input type="checkbox" class="checkbox">
-                                <span class="slider round"></span>
-                            </label>
-                            <p>Done</p>
-                        </div>
-                        `);
-        } else if (task.completed === true) {
-            $tr.append(`
-                        <div class="done-grid-item">
-                            <label class="switch">
-                                <input type="checkbox" class="checkbox" checked>
-                                <span class="slider round"></span>
-                            </label>
-                            <p>Done</p>
-                        </div>
-                        `);
-        } else {
-            console.log('ERROR');
-        };
 
         // check priority
         if (task.priority === 1) {
@@ -124,7 +98,6 @@ function renderTasks(tasks) {
                         </div>`);
         } else {
             console.log('ERROR');
-
         };
 
         // append everything to the DOM
@@ -149,10 +122,8 @@ function convertDate(input) {
     }
 } // end convertDate
 
-
 function addTask() {
     console.log('clicked submit');
-
     const newTask = {
         task: $('#taskInput').val(),
         priority: $('#priorityInput').val(),
@@ -201,7 +172,6 @@ function addTask() {
         alert('Unable to add task at this time.');
     });
 
-
 } // addTask
 
 function clearFields() {
@@ -215,6 +185,7 @@ function clearFields() {
 function deleteTask() {
     console.log('clicked delete');
     const id = $(this).parent().parent().data('id');
+    // sweet alert for delete
     swal({
         title: "Delete",
         text: "Are you sure?",
@@ -246,7 +217,7 @@ function markDone() {
     const id = $(this).parent().parent().parent().data('id');
     console.log(id);
     const dataToSend = {};
-
+    // check to see if switch has been toggled
     if (this.checked) {
         console.log('checked working');
         dataToSend.completed = 'true';
@@ -258,11 +229,9 @@ function markDone() {
         type: 'PUT',
         url: `/tasks/${id}`,
         data: dataToSend
-
     }).then(function (response) {
         console.log('updated');
         getTasks();
-
     }).catch(function (error) {
         alert('error updating');
     }) // end ajax
@@ -277,9 +246,6 @@ function orderTasks() {
     const dataToSend = {
         orderBy: orderByData
     };
-
-    console.log(dataToSend);
-
 
     $.ajax({
         type: 'PUT',
