@@ -13,6 +13,7 @@ function addListeners() {
     $('#submitBtn').on('click', addTask);
     $('#taskList').on('click', '.deleteBtn', deleteTask);
     $('#taskList').on('change', '.checkbox', markDone)
+    $('#taskList').on('click', '.editBtn', editTask)
     $('#displayInput').on('change', orderTasks)
 } // end clickListeners
 
@@ -293,3 +294,8 @@ function orderTasks() {
     }) // end ajax
 
 } // end orderTasks
+
+function editTask() {
+    console.log('clicked edit');
+    
+} // end editTask
