@@ -102,5 +102,6 @@
     [ ] - put route
     [ ] - ajax on client
 [x] - display by dropdown
+    - create global variable of orderBy. have that trigger different put based on that. replace get with a PUT route.
 [x] - sweet alert when deleting
 [ ] - style inputs
