@@ -2,7 +2,11 @@
 
 ## Description
 
-This is a straight forward to-do list app with a few basic features. 
+This is a straight forward to-do list app with a few basic features. It was a weekend assignment from Prime Digital Academy that was our introduction to working with databases and SQL. 
+
+The app has the ability to add tasks under a few different categories where you can set a priority level to it as well. Tasks can be deleted and sorted by the various attributes assigned to that task. 
+
+What To Do's was built mainly with jQuery and Bootstrap for styling. 
 
 ### Prerequisites
 
